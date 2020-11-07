@@ -6,27 +6,30 @@ import { GameService } from 'services';
 const gameClient = new GameService();
 
 function App() {
-  const [rows, setRows] = useState(10);
   const [cols, setCols] = useState(10);
-  const [mines, setMines] = useState(5);
-  const [flags, setFlags] = useState(5);
-  const [mounted, setMounted] = useState(false);
   const [dummyBoard, setDummyBoard] = useState([]);
+  const [flags, setFlags] = useState(5);
+  const [mines, setMines] = useState(5);
+  const [rows, setRows] = useState(10);
   const [updateDummyBoard, setUpdateDummyBoard] = useState(true);
+  const [activeGame, setActiveGame] = useState(null);
 
   const handleSetRows = value => {
-    // TODO can't be less than 3
+    if (value < 3 || value > 99) {
+      return;
+    }
     setRows(value);
-    setUpdateDummyBoard(true);
   };
 
   const handleSetCols = value => {
-    // TODO can't be less than 3
+    if (value < 3 || value > 99) {
+      return;
+    }
     setCols(value);
-    setUpdateDummyBoard(true);
   };
 
   const generateDummyBoard = () => {
+    setDummyBoard([]);
     const board = [];
 
     for (let row = 0; row < rows; row++) {
@@ -41,41 +44,67 @@ function App() {
   };
 
   const handleSetMines = event => {
-    // TODO can't be less than 1
-    setMines(parseInt(event.target.value));
-    setFlags(parseInt(event.target.value));
-    generateDummyBoard();
+    const value = parseInt(event.target.value);
+    if (value < 1 || value > 99) {
+      return;
+    }
+
+    setMines(value);
+    setFlags(value);
   };
 
   useEffect(() => {
     function bootstrap() {
-      setMounted(true);
-      generateDummyBoard();
-    }
-
-    if (!mounted) {
-      bootstrap();
+      setUpdateDummyBoard(false);
+      handleCreateNewGame();
     }
 
     if (updateDummyBoard) {
-      setUpdateDummyBoard(false);
-      generateDummyBoard();
+      bootstrap();
+    }
+
+    if (activeGame && activeGame.win === true) {
+      document.getElementsByClassName('reset')[0].innerHTML = '😎';
     }
   });
 
   const handleCellClick = (row, col) => {
+    if (activeGame.status === 3 || activeGame.win === true) {
+      return;
+    }
     const cell = document.getElementById(`cell_${row}_${col}`);
     if (cell.classList.contains('flagged')) {
       return;
     }
 
     if (!cell.classList.contains('revealed')) {
-      cell.classList.add('revealed');
+      cell.classList.add('busy');
+      gameClient.cellClick(row, col, activeGame.id).then(response => {
+        cell.classList.add('revealed');
+        cell.classList.remove('busy');
+        if (response.active_game.board_progress[row][col] === 0) {
+          cell.classList.add('empty');
+        } else if (response.active_game.board_progress[row][col] > 0) {
+          const points = `${response.active_game.board_progress[row][col]}`;
+          cell.classList.add('point');
+          cell.classList.add(`point-${points}`);
+          cell.innerHTML = points;
+        } else {
+          cell.classList.add('mined');
+          document.getElementsByClassName('reset')[0].innerHTML = '👻';
+        }
+
+        setActiveGame(response.active_game);
+      });
     }
   };
 
   const handleCellContextMenu = (event, row, col) => {
     event.preventDefault();
+    if (activeGame.win === true) {
+      return;
+    }
+
     const cell = document.getElementById(`cell_${row}_${col}`);
     if (cell.classList.contains('revealed')) {
       return;
@@ -83,18 +112,22 @@ function App() {
 
     if (cell.classList.contains('flagged')) {
       cell.classList.remove('flagged');
-    } else {
+      setFlags(flags + 1);
+    } else if (flags > 0) {
       cell.classList.add('flagged');
+      setFlags(flags - 1);
     }
   };
 
-  const handleCreateNewGame = event => {
-    gameClient
-      .createNewGame(rows, cols, mines)
-      .then(response => console.log(response));
+  const handleCreateNewGame = () => {
+    gameClient.createNewGame(rows, cols, mines).then(response => {
+      setActiveGame(response);
+      setFlags(mines);
+      generateDummyBoard();
+    });
   };
 
-  if (!mounted) {
+  if (!activeGame) {
     return null;
   }
 
@@ -111,6 +144,7 @@ function App() {
           setCols={handleSetCols}
           setMines={setMines}
           setRows={handleSetRows}
+          setUpdateDummyBoard={setUpdateDummyBoard}
         />
         <Board
           cols={cols}

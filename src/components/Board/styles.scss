@@ -2,7 +2,20 @@
 
 .board {
   display: flex;
-  flex-direction: column;
+
+  &-col-left,
+  &-col-right {
+    flex: 1 1 auto;
+  }
+
+  &-col-center {
+    flex: 0 0 auto;
+    border-width: 3px;
+    border-style: solid;
+    border-color: darken($gray, 20%) lighten($gray, 20%) lighten($gray, 20%)
+      darken($gray, 20%);
+  }
+
   &-row {
     display: flex;
     justify-content: center;
@@ -14,8 +27,52 @@
     }
 
     &-cell.revealed {
-      margin: 1px;
-      border: 2px solid $gray-dark;
+      padding: 2px;
+      border: 1px solid $gray-border;
+    }
+
+    &-cell.busy {
+      background-color: $gray-mid;
+      margin: 3px;
+      border: none;
+    }
+
+    &-cell.point {
+      text-align: center;
+      font-size: 90%;
+      font-weight: bold;
+    }
+
+    &-cell.point-1 {
+      color: #0000ff;
+    }
+    &-cell.point-2 {
+      color: #037d02;
+    }
+    &-cell.point-3 {
+      color: #fd0000;
+    }
+    &-cell.point-4 {
+      color: #010180;
+    }
+    &-cell.point-5 {
+      color: #830101;
+    }
+    &-cell.point-6 {
+      color: #038081;
+    }
+    &-cell.point-7 {
+      color: #000000;
+    }
+    &-cell.point-8 {
+      color: #808080;
+    }
+
+    &-cell.mined {
+      background-image: url(../../assets/images/mine.png);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 90%;
     }
 
     &-cell {

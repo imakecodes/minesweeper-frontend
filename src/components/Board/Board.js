@@ -6,22 +6,26 @@ import './styles.scss';
 const Board = ({ dummyBoard, handleCellClick, handleCellContextMenu }) => {
   return (
     <div className="board">
-      {dummyBoard.map((cols, rowId) => (
-        <div className="board-row" key={`row_${rowId}`}>
-          {cols.map((col, colId) => (
-            <div
-              className="board-row-cell box"
-              id={`cell_${rowId}_${colId}`}
-              key={`cell_${rowId}_${colId}`}
-              onClick={() => handleCellClick(rowId, colId)}
-              onContextMenu={event =>
-                handleCellContextMenu(event, rowId, colId)
-              }>
-              {' '}
-            </div>
-          ))}
-        </div>
-      ))}
+      <div className="board-col-left"> </div>
+      <div className="board-col-center">
+        {dummyBoard.map((cols, rowId) => (
+          <div className="board-row" key={`row_${rowId}`}>
+            {cols.map((col, colId) => (
+              <div
+                className="board-row-cell box"
+                id={`cell_${rowId}_${colId}`}
+                key={`cell_${rowId}_${colId}`}
+                onClick={() => handleCellClick(rowId, colId)}
+                onContextMenu={event =>
+                  handleCellContextMenu(event, rowId, colId)
+                }>
+                {' '}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+      <div className="board-col-right"> </div>
     </div>
   );
 };

@@ -11,45 +11,51 @@ const Header = ({
   mines,
   rows,
   setCols,
-  setRows
+  setRows,
+  setUpdateDummyBoard
 }) => {
   return (
     <div className="header">
-      <div className="flags led-panel box">{flags}</div>
       <div className="settings">
-        <div className="custom">
-          <input
-            className="box"
-            onChange={event => setRows(parseInt(event.target.value))}
-            type="number"
-            value={rows}
-          />
-          <input
-            className="box"
-            onChange={event => setCols(parseInt(event.target.value))}
-            type="number"
-            value={cols}
-          />
-          <input
-            className="box"
-            onChange={event => handleSetMines(event)}
-            type="number"
-            value={mines}
-          />
+        <input
+          className="box"
+          onChange={event => setRows(parseInt(event.target.value))}
+          type="number"
+          value={rows}
+        />
+        <input
+          className="box"
+          onChange={event => setCols(parseInt(event.target.value))}
+          type="number"
+          value={cols}
+        />
+        <input
+          className="box"
+          onChange={event => handleSetMines(event)}
+          type="number"
+          value={mines}
+        />
+        <button
+          className="button box"
+          onClick={() => setUpdateDummyBoard(true)}>
+          Apply
+        </button>
+      </div>
+      <div className="canvas">
+        <div className="flags led-panel box">{flags}</div>
+        <div
+          className="reset box"
+          onMouseDown={event => {
+            event.target.innerHTML = '😮';
+          }}
+          onMouseUp={event => {
+            event.target.innerHTML = '🙂';
+            handleCreateNewGame(event);
+          }}>
+          🙂
         </div>
+        <div className="timer led-panel box">000</div>
       </div>
-      <div
-        className="reset box"
-        onMouseDown={event => {
-          event.target.innerHTML = '😮';
-        }}
-        onMouseUp={event => {
-          event.target.innerHTML = '🙂';
-          handleCreateNewGame(event);
-        }}>
-        🙂
-      </div>
-      <div className="timer led-panel box">000</div>
     </div>
   );
 };
@@ -63,7 +69,8 @@ Header.propTypes = {
   rows: PropTypes.number,
   setCols: PropTypes.func.isRequired,
   setMines: PropTypes.func.isRequired,
-  setRows: PropTypes.func.isRequired
+  setRows: PropTypes.func.isRequired,
+  setUpdateDummyBoard: PropTypes.func.isRequired
 };
 
 export default Header;
