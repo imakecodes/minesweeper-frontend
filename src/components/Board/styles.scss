@@ -1,1 +1,27 @@
 @import '../../assets/scss/variables';
+
+.board {
+  display: flex;
+  flex-direction: column;
+  &-row {
+    display: flex;
+    justify-content: center;
+
+    &-cell.flagged {
+      background-image: url(../../assets/images/flag.svg);
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+
+    &-cell.revealed {
+      margin: 1px;
+      border: 2px solid $gray-dark;
+    }
+
+    &-cell {
+      width: $cell-size;
+      height: $cell-size;
+      line-height: $cell-size;
+    }
+  }
+}

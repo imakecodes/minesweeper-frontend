@@ -4,18 +4,19 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 14px;
-  background-color: $gray-light;
+
+  background-color: $gray-mid;
 }
 
 .canvas {
   max-width: 1000px;
   width: 100%;
   min-width: 500px;
-  background-color: $gray-mid;
   margin: 0 auto;
   border-radius: 3px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 .box {
