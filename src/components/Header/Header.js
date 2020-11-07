@@ -6,6 +6,7 @@ import './styles.scss';
 const Header = ({
   cols,
   flags,
+  handleCreateNewGame,
   handleSetMines,
   mines,
   rows,
@@ -37,16 +38,14 @@ const Header = ({
           />
         </div>
       </div>
-
       <div
         className="reset box"
         onMouseDown={event => {
           event.target.innerHTML = '😮';
-          console.log('onmousedown');
         }}
         onMouseUp={event => {
           event.target.innerHTML = '🙂';
-          console.log('onMouseUp');
+          handleCreateNewGame(event);
         }}>
         🙂
       </div>
@@ -58,6 +57,7 @@ const Header = ({
 Header.propTypes = {
   cols: PropTypes.number,
   flags: PropTypes.number,
+  handleCreateNewGame: PropTypes.func.isRequired,
   handleSetMines: PropTypes.func.isRequired,
   mines: PropTypes.number,
   rows: PropTypes.number,

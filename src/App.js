@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import { Board, Header } from 'components';
+import { GameService } from 'services';
+
+const gameClient = new GameService();
 
 function App() {
   const [rows, setRows] = useState(10);
@@ -85,6 +88,12 @@ function App() {
     }
   };
 
+  const handleCreateNewGame = event => {
+    gameClient
+      .createNewGame(rows, cols, mines)
+      .then(response => console.log(response));
+  };
+
   if (!mounted) {
     return null;
   }
@@ -95,6 +104,7 @@ function App() {
         <Header
           cols={cols}
           flags={flags}
+          handleCreateNewGame={handleCreateNewGame}
           handleSetMines={handleSetMines}
           mines={mines}
           rows={rows}

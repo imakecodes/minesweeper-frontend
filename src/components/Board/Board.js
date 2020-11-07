@@ -12,11 +12,11 @@ const Board = ({ dummyBoard, handleCellClick, handleCellContextMenu }) => {
             <div
               className="board-row-cell box"
               id={`cell_${rowId}_${colId}`}
+              key={`cell_${rowId}_${colId}`}
               onClick={() => handleCellClick(rowId, colId)}
               onContextMenu={event =>
                 handleCellContextMenu(event, rowId, colId)
-              }
-              key={`cell_${rowId}_${colId}`}>
+              }>
               {' '}
             </div>
           ))}
@@ -30,8 +30,8 @@ Board.propTypes = {
   cols: PropTypes.number.isRequired,
   dummyBoard: PropTypes.array.isRequired,
   handleCellClick: PropTypes.func.isRequired,
-  rows: PropTypes.number.isRequired,
-  handleCellContextMenu: PropTypes.func.isRequired
+  handleCellContextMenu: PropTypes.func.isRequired,
+  rows: PropTypes.number.isRequired
 };
 
 export default Board;
