@@ -1,19 +1,50 @@
 @import '../../assets/scss/variables';
 
 .header {
-  max-width: 500px;
+  max-width: 400px;
   width: 100%;
-  padding: 5px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 
+  &-col-left,
+  &-col-right {
+    flex: 1 1 auto;
+  }
+
+  &-col-center {
+    flex: 0 0 auto;
+    border-width: 3px;
+    border-style: solid;
+    border-color: darken($gray, 20%) lighten($gray, 20%) lighten($gray, 20%)
+      darken($gray, 20%);
+  }
+
   .settings {
-    max-width: 221px;
     display: flex;
     justify-content: center;
-    margin: 10px auto;
+    border-width: 3px;
+    border-style: solid;
+    border-color: lighten($gray, 20%) darken($gray, 20%) darken($gray, 20%)
+      lighten($gray, 20%);
+    padding-bottom: 5px;
+
+    .form-control {
+      display: flex;
+      flex-direction: column;
+
+      &:last-child {
+        align-items: flex-end;
+        justify-content: flex-end;
+      }
+
+      label {
+        font-size: 75%;
+        text-transform: uppercase;
+        padding: 5px;
+      }
+    }
 
     input {
       width: 40px;
@@ -22,18 +53,28 @@
       text-align: center;
       background: $gray-light;
       margin: 0 2px;
+      border-color: darken($gray, 20%) lighten($gray, 20%) lighten($gray, 20%)
+        darken($gray, 20%);
+      font-size: 120%;
     }
 
     .button {
       cursor: pointer;
       margin: 0 2px;
+      height: 38px;
+      border-color: lighten($gray, 20%) darken($gray, 20%) darken($gray, 20%)
+        lighten($gray, 20%);
     }
   }
 
-  .canvas {
+  &-actions {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    border-width: 3px;
+    border-style: solid;
+    border-color: lighten($gray, 20%) darken($gray, 20%) darken($gray, 20%)
+      lighten($gray, 20%);
 
     .led-panel {
       font-family: 'Space Mono', monospace;
@@ -47,10 +88,11 @@
     }
 
     .reset {
-      width: 30px;
-      line-height: 30px;
+      width: 24px;
+      line-height: 24px;
       text-align: center;
       cursor: pointer;
+      margin: 3px;
     }
   }
 }

@@ -2,19 +2,7 @@
 
 .board {
   display: flex;
-
-  &-col-left,
-  &-col-right {
-    flex: 1 1 auto;
-  }
-
-  &-col-center {
-    flex: 0 0 auto;
-    border-width: 3px;
-    border-style: solid;
-    border-color: darken($gray, 20%) lighten($gray, 20%) lighten($gray, 20%)
-      darken($gray, 20%);
-  }
+  justify-content: center;
 
   &-row {
     display: flex;

@@ -6,7 +6,6 @@ import './styles.scss';
 const Board = ({ dummyBoard, handleCellClick, handleCellContextMenu }) => {
   return (
     <div className="board">
-      <div className="board-col-left"> </div>
       <div className="board-col-center">
         {dummyBoard.map((cols, rowId) => (
           <div className="board-row" key={`row_${rowId}`}>
@@ -25,7 +24,6 @@ const Board = ({ dummyBoard, handleCellClick, handleCellContextMenu }) => {
           </div>
         ))}
       </div>
-      <div className="board-col-right"> </div>
     </div>
   );
 };

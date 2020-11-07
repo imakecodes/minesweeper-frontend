@@ -123,6 +123,7 @@ function App() {
     gameClient.createNewGame(rows, cols, mines).then(response => {
       setActiveGame(response);
       setFlags(mines);
+      document.getElementsByClassName('reset')[0].innerHTML = '🙂';
       generateDummyBoard();
     });
   };
@@ -133,6 +134,7 @@ function App() {
 
   return (
     <div className="app">
+      <div className="app-col-spacer"> </div>
       <div className="canvas">
         <Header
           cols={cols}
@@ -154,6 +156,7 @@ function App() {
           rows={rows}
         />
       </div>
+      <div className="app-col-spacer"> </div>
     </div>
   );
 }
