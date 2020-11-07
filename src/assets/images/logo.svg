@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <g id="Group_1" data-name="Group 1" transform="translate(-99 -191)">
+    <rect id="Rectangle_1" data-name="Rectangle 1" width="64" height="64" rx="8" transform="translate(99 191)" fill="#d0d0d0"/>
+    <line id="Line_1" data-name="Line 1" y2="63" transform="translate(119.5 191.5)" fill="none" stroke="#fff" stroke-width="1"/>
+    <line id="Line_2" data-name="Line 2" y2="63" transform="translate(143.5 191.5)" fill="none" stroke="#fff" stroke-width="1"/>
+    <line id="Line_3" data-name="Line 3" x1="63" transform="translate(99.5 234.5)" fill="none" stroke="#fff" stroke-width="1"/>
+    <line id="Line_4" data-name="Line 4" x1="63" transform="translate(99.5 214.5)" fill="none" stroke="#fff" stroke-width="1"/>
+    <text id="_1" data-name="1" transform="translate(105 209)" fill="#707070" font-size="16" font-family="HelveticaNeue, Helvetica Neue"><tspan x="0" y="0">1</tspan></text>
+    <text id="_1-2" data-name="1" transform="translate(127 209)" fill="#707070" font-size="16" font-family="HelveticaNeue, Helvetica Neue"><tspan x="0" y="0">1</tspan></text>
+    <text id="_1-3" data-name="1" transform="translate(127 231)" fill="#707070" font-size="16" font-family="HelveticaNeue, Helvetica Neue"><tspan x="0" y="0">1</tspan></text>
+    <text id="_1-4" data-name="1" transform="translate(127 250)" fill="#707070" font-size="16" font-family="HelveticaNeue, Helvetica Neue"><tspan x="0" y="0">1</tspan></text>
+    <text id="_1-5" data-name="1" transform="translate(106 250)" fill="#707070" font-size="16" font-family="HelveticaNeue, Helvetica Neue"><tspan x="0" y="0">1</tspan></text>
+    <line id="Line_5" data-name="Line 5" y2="13" transform="translate(104.5 218.5)" fill="none" stroke="#707070" stroke-linecap="round" stroke-width="1"/>
+    <g id="Polygon_1" data-name="Polygon 1" transform="matrix(-0.657, 0.293, 0.752, 0.308, 110.452, 216.934)" fill="#6e6e6e">
+      <path d="M 15.6063289642334 6.5 L 1.393670678138733 6.5 L 8.5 0.6477288007736206 L 15.6063289642334 6.5 Z" stroke="none"/>
+      <path d="M 8.5 1.295455932617188 L 2.787339210510254 6 L 14.21266078948975 6 L 8.5 1.295455932617188 M 8.5 0 L 17 7 L 0 7 L 8.5 0 Z" stroke="none" fill="#707070"/>
+    </g>
+  </g>
+</svg>
