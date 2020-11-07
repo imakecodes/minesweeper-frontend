@@ -101,7 +101,7 @@ function App() {
 
   const handleCellContextMenu = (event, row, col) => {
     event.preventDefault();
-    if (activeGame.win === true) {
+    if (activeGame.status === 3) {
       return;
     }
 
