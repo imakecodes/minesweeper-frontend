@@ -26,7 +26,7 @@
       1,
       "multiline"
     ],
-    "react/jsx-closing-bracket-location": 1,
+    "react/jsx-closing-bracket-location": 0,
     "react/jsx-curly-spacing": 1,
     "react/jsx-indent-props": [
       2,

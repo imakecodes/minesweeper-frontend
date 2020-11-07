@@ -1,7 +1,8 @@
 @import 'reset';
+@import 'variables';
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 14px;
-  background-color: #f6f6f6;
+  background-color: $gray-light;
 }

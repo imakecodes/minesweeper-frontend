@@ -1,0 +1,43 @@
+@import '../../assets/scss/variables';
+
+.header {
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+
+  .led-panel {
+    font-family: 'Space Mono', monospace;
+    background: $gray-dark;
+    color: $red;
+    text-shadow: 0 0 2px rgba($red, 1);
+    line-height: 30px;
+    letter-spacing: 0.05em;
+    text-align: center;
+    width: 30px;
+  }
+
+  .settings {
+    max-width: 221px;
+    display: flex;
+    justify-content: space-between;
+
+    .custom {
+      display: flex;
+      justify-content: space-between;
+
+      input {
+        width: 30px;
+        text-align: center;
+      }
+    }
+  }
+
+  .reset {
+    width: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+  }
+}
