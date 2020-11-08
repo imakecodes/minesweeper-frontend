@@ -5,6 +5,7 @@ import './styles.scss';
 
 const Header = ({
   cols,
+  elapsedTime,
   flags,
   handleCreateNewGame,
   handleSetMines,
@@ -68,7 +69,7 @@ const Header = ({
           }}>
           🙂
         </div>
-        <div className="timer led-panel">000</div>
+        <div className="timer led-panel">{elapsedTime}</div>
       </div>
     </div>
   );
@@ -76,6 +77,7 @@ const Header = ({
 
 Header.propTypes = {
   cols: PropTypes.number,
+  elapsedTime: PropTypes.string.isRequired,
   flags: PropTypes.number,
   handleCreateNewGame: PropTypes.func.isRequired,
   handleSetMines: PropTypes.func.isRequired,

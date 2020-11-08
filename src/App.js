@@ -5,6 +5,9 @@ import { GameService } from 'services';
 
 const gameClient = new GameService();
 
+let timer = null;
+let elapsed = 0;
+
 function App() {
   const [cols, setCols] = useState(10);
   const [dummyBoard, setDummyBoard] = useState([]);
@@ -13,6 +16,8 @@ function App() {
   const [rows, setRows] = useState(10);
   const [updateDummyBoard, setUpdateDummyBoard] = useState(true);
   const [activeGame, setActiveGame] = useState(null);
+  const [hadFirstGameClick, setHadFirstGameClick] = useState(false);
+  const [elapsedTime, setElapsedTime] = useState(0);
 
   const handleSetRows = event => {
     const value = parseInt(event.target.value);
@@ -82,6 +87,9 @@ function App() {
     }
 
     if (activeGame && activeGame.win === true) {
+      // Stop timer
+      clearInterval(timer);
+
       document.getElementsByClassName('reset')[0].innerHTML = '😎';
 
       // Search for all unrevealed squares to put the flag
@@ -96,6 +104,9 @@ function App() {
     }
 
     if (activeGame && activeGame.win === false) {
+      // Stop timer
+      clearInterval(timer);
+
       // search for all mines on board
       activeGame.board.map((row, rowId) =>
         row.map((col, colId) => {
@@ -108,10 +119,26 @@ function App() {
     }
   });
 
+  const incrementElapsedTime = () => {
+    elapsed += 1;
+    console.log(elapsedTime, elapsed);
+    setElapsedTime(elapsed);
+  };
+
+  const handlePlayTimer = () => {
+    timer = setInterval(incrementElapsedTime, 1000);
+  };
+
   const handleCellClick = (row, col) => {
     if (activeGame.status === 3 || activeGame.win === true) {
       return;
     }
+
+    if (hadFirstGameClick === false) {
+      setHadFirstGameClick(true);
+      handlePlayTimer();
+    }
+
     const cell = document.getElementById(`cell_${row}_${col}`);
     if (
       cell.classList.contains('flagged') ||
@@ -196,8 +223,12 @@ function App() {
     }
 
     gameClient.createNewGame(rows, cols, mines).then(response => {
+      setHadFirstGameClick(false);
       setActiveGame(response);
       setFlags(mines);
+      clearInterval(timer);
+      setElapsedTime(0);
+      elapsed = 0;
       document.getElementsByClassName('reset')[0].innerHTML = '🙂';
       generateDummyBoard();
     });
@@ -222,6 +253,7 @@ function App() {
           setMines={setMines}
           setRows={handleSetRows}
           setUpdateDummyBoard={setUpdateDummyBoard}
+          elapsedTime={`${elapsedTime}`}
         />
         <Board
           cols={cols}
