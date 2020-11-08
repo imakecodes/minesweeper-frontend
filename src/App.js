@@ -64,6 +64,20 @@ function App() {
 
     if (activeGame && activeGame.win === true) {
       document.getElementsByClassName('reset')[0].innerHTML = '😎';
+
+      // Search for all unrevealed squares to put the flag
+      dummyBoard.map((row, rowId) =>
+        row.map((col, colId) => {
+          const cell = document.getElementById(`cell_${rowId}_${colId}`);
+          if (
+            !cell.classList.contains('revealed') &&
+            !cell.classList.contains('empty') &&
+            !cell.classList.contains('point')
+          ) {
+            cell.classList.add('flagged');
+          }
+        })
+      );
     }
   });
 
