@@ -50,7 +50,6 @@ function App() {
     }
 
     setMines(value);
-    setFlags(value);
   };
 
   useEffect(() => {
