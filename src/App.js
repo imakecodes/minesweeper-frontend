@@ -79,6 +79,19 @@ function App() {
         })
       );
     }
+
+    if (activeGame && activeGame.win === false) {
+      console.log(activeGame);
+      // search for all mines on board
+      activeGame.board.map((row, rowId) =>
+        row.map((col, colId) => {
+          if (col === -1) {
+            const cell = document.getElementById(`cell_${rowId}_${colId}`);
+            cell.classList.add('mined');
+          }
+        })
+      );
+    }
   });
 
   const handleCellClick = (row, col) => {
@@ -107,6 +120,7 @@ function App() {
           cell.innerHTML = points;
         } else {
           cell.classList.add('mined');
+          cell.classList.add('mined-red');
           document.getElementsByClassName('reset')[0].innerHTML = '👻';
         }
 
