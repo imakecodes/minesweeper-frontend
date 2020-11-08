@@ -22,7 +22,7 @@ const Header = ({
           <input
             className="box"
             id="rows"
-            onChange={event => setRows(parseInt(event.target.value))}
+            onChange={event => setRows(event)}
             type="number"
             value={rows}
           />
@@ -32,7 +32,7 @@ const Header = ({
           <input
             className="box"
             id="cols"
-            onChange={event => setCols(parseInt(event.target.value))}
+            onChange={event => setCols(event)}
             type="number"
             value={cols}
           />

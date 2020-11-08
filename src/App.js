@@ -14,8 +14,10 @@ function App() {
   const [updateDummyBoard, setUpdateDummyBoard] = useState(true);
   const [activeGame, setActiveGame] = useState(null);
 
-  const handleSetRows = value => {
-    if (value < 3 || value > 99) {
+  const handleSetRows = event => {
+    const value = parseInt(event.target.value);
+
+    if (value == 0) {
       return;
     }
 
@@ -23,8 +25,10 @@ function App() {
     setRows(value);
   };
 
-  const handleSetCols = value => {
-    if (value < 3 || value > 99) {
+  const handleSetCols = event => {
+    const value = parseInt(event.target.value);
+
+    if (value == 0) {
       return;
     }
 
@@ -57,11 +61,11 @@ function App() {
   const handleSetMines = event => {
     const value = parseInt(event.target.value);
     if (value < 1 || value > 99) {
-      return;
+      return value;
     }
     const matrixSize = rows * cols;
     if (value >= matrixSize) {
-      return;
+      return value;
     }
 
     setMines(value);
@@ -183,6 +187,14 @@ function App() {
   };
 
   const handleCreateNewGame = () => {
+    if (rows < 3) {
+      setRows(3);
+    }
+
+    if (cols < 3) {
+      setCols(3);
+    }
+
     gameClient.createNewGame(rows, cols, mines).then(response => {
       setActiveGame(response);
       setFlags(mines);
