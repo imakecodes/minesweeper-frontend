@@ -121,6 +121,7 @@ function App() {
       gameClient.cellClick(row, col, activeGame.id).then(response => {
         cell.classList.add('revealed');
         cell.classList.remove('busy');
+
         if (response.active_game.board_progress[row][col] === 0) {
           cell.classList.add('empty');
         } else if (response.active_game.board_progress[row][col] > 0) {
@@ -133,6 +134,25 @@ function App() {
           cell.classList.add('mined-red');
           document.getElementsByClassName('reset')[0].innerHTML = '👻';
         }
+
+        response.active_game.board_progress.map((row, rowId) =>
+          row.map((col, colId) => {
+            const element = document.getElementById(`cell_${rowId}_${colId}`);
+            if (element.classList.length > 2) {
+              return;
+            }
+
+            if (col == '-') {
+              return;
+            }
+            element.classList.add('revealed');
+            element.classList.add('point');
+            element.classList.add(`point-${col}`);
+            if (col > 0) {
+              element.innerHTML = col;
+            }
+          })
+        );
 
         setActiveGame(response.active_game);
       });
