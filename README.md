@@ -9,6 +9,13 @@ OpenAPI 3 documentation: [https://apidoc.mines.makecodes.dev/][url/apidoc]
 Game frontend: [https://mines.makecodes.dev/][url/the-game]
 Backend github repo: [https://github.com/imakecodes/minesweeper-backend][github/backend]
 
+# Next desired steps
+
+- Create unit tests
+- Create e2e tests
+- Design the authentication page
+- Create the scoreboard
+
 # Running locally
 
 ### Clone the repository
