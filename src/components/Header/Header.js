@@ -18,33 +18,33 @@ const Header = ({
     <div className="header">
       <div className="settings">
         <div className="form-control">
-          <label for="rows">Rows:</label>
+          <label htmlFor="rows">Rows:</label>
           <input
             className="box"
+            id="rows"
             onChange={event => setRows(parseInt(event.target.value))}
             type="number"
             value={rows}
-            id="rows"
           />
         </div>
         <div className="form-control">
-          <label for="cols">Columns:</label>
+          <label htmlFor="cols">Columns:</label>
           <input
             className="box"
+            id="cols"
             onChange={event => setCols(parseInt(event.target.value))}
             type="number"
             value={cols}
-            id="cols"
           />
         </div>
         <div className="form-control">
-          <label for="mines">Mines:</label>
+          <label htmlFor="mines">Mines:</label>
           <input
             className="box"
+            id="mines"
             onChange={event => handleSetMines(event)}
             type="number"
             value={mines}
-            id="mines"
           />
         </div>
         <div className="form-control">
