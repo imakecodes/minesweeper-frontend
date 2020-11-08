@@ -18,6 +18,8 @@ function App() {
     if (value < 3 || value > 99) {
       return;
     }
+
+    setMaxMines();
     setRows(value);
   };
 
@@ -25,7 +27,16 @@ function App() {
     if (value < 3 || value > 99) {
       return;
     }
+
+    setMaxMines();
     setCols(value);
+  };
+
+  const setMaxMines = () => {
+    const matrixSize = rows * cols;
+    if (mines > matrixSize) {
+      setMines(matrixSize - 1);
+    }
   };
 
   const generateDummyBoard = () => {
@@ -48,6 +59,10 @@ function App() {
     if (value < 1 || value > 99) {
       return;
     }
+    const matrixSize = rows * cols;
+    if (value >= matrixSize) {
+      return;
+    }
 
     setMines(value);
   };
@@ -66,14 +81,10 @@ function App() {
       document.getElementsByClassName('reset')[0].innerHTML = '😎';
 
       // Search for all unrevealed squares to put the flag
-      dummyBoard.map((row, rowId) =>
+      activeGame.board.map((row, rowId) =>
         row.map((col, colId) => {
-          const cell = document.getElementById(`cell_${rowId}_${colId}`);
-          if (
-            !cell.classList.contains('revealed') &&
-            !cell.classList.contains('empty') &&
-            !cell.classList.contains('point')
-          ) {
+          if (col === -1) {
+            const cell = document.getElementById(`cell_${rowId}_${colId}`);
             cell.classList.add('flagged');
           }
         })
@@ -81,7 +92,6 @@ function App() {
     }
 
     if (activeGame && activeGame.win === false) {
-      console.log(activeGame);
       // search for all mines on board
       activeGame.board.map((row, rowId) =>
         row.map((col, colId) => {
