@@ -72,7 +72,10 @@ function App() {
       return;
     }
     const cell = document.getElementById(`cell_${row}_${col}`);
-    if (cell.classList.contains('flagged')) {
+    if (
+      cell.classList.contains('flagged') ||
+      cell.classList.contains('question')
+    ) {
       return;
     }
 
@@ -109,9 +112,12 @@ function App() {
       return;
     }
 
-    if (cell.classList.contains('flagged')) {
+    if (cell.classList.contains('question')) {
+      cell.classList.remove('question');
+    } else if (cell.classList.contains('flagged')) {
       cell.classList.remove('flagged');
       setFlags(flags + 1);
+      cell.classList.add('question');
     } else if (flags > 0) {
       cell.classList.add('flagged');
       setFlags(flags - 1);
